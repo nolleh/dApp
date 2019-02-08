@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "string": "cpp",
+        "xstring": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp",
+        "xtr1common": "cpp",
+        "initializer_list": "cpp",
+        "xutility": "cpp"
+    }
+}

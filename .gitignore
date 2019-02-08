@@ -1,5 +1,8 @@
+
 **/CMakeCache.txt
 **/CMakeFiles
 **/cmake_install.cmake
 **/*.swp
 **/MakeFile
+*.abi
+*.wasm
