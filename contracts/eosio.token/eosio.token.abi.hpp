@@ -1,5 +1,6 @@
+const char* const _abi = R"=====(
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Fri Feb  8 13:46:16 2019",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Fri Feb  8 19:15:15 2019",
     "version": "eosio::abi/1.1",
     "structs": [],
     "types": [],
@@ -8,4 +9,4 @@
     "ricardian_clauses": [],
     "variants": [],
     "abi_extensions": []
-}
+})=====";
