@@ -5,4 +5,5 @@ find_package(eosio.cdt)
 
 add_contract(eosio.token eosio.token eosio.token.cpp)
 
-add_unittest_header_files(eosio.token ${CMAKE_CURRENT_BINARY_DIR})
+# abi 파일이 항상 CURRENT_BINARY 에서 생성되므로.
+add_unittest_header_files(eosio.token ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR})

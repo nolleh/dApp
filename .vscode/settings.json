@@ -6,6 +6,9 @@
         "xlocale": "cpp",
         "xtr1common": "cpp",
         "initializer_list": "cpp",
-        "xutility": "cpp"
-    }
+        "xutility": "cpp",
+        "future": "cpp",
+        "typeindex": "cpp"
+    },
+    "git.ignoreLimitWarning": true
 }
