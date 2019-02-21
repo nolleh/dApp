@@ -26,11 +26,12 @@ BOOST_AUTO_TEST_CASE(eosio_token_test) try {
     chain.create_account(N(eosio.token));
     chain.produce_blocks(10);
     
-    chain.set_code(N(eosio.token), eosio_token2_wast);
+    // chain.set_code(N(eosio.token), eosio_token2_wast);
     // chain.set_code(N(eosio.token), wast_to_wasm(eosio_token_wast));
-    chain.set_abi(N(eosio.token), eosio_token2_abi);
+    // chain.set_abi(N(eosio.token), eosio_token2_abi);
 
-    BOOST_REQUIRE_EQUAL(1, 0);
+    // fc::temp_directory dir; 
+    BOOST_REQUIRE_EQUAL("",  fc::canonical(fc::temp_directory_path()).string());
 } FC_LOG_AND_RETHROW()
 
 BOOST_AUTO_TEST_SUITE_END()

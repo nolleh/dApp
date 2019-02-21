@@ -51,13 +51,13 @@ if(NOT LCOV_PATH)
     message(FATAL_ERROR "lcov not found! Aborting...")
 endif() # NOT LCOV_PATH
 
-if(NOT LLVMCOV_PATH)
-    message(FATAL_ERROR "llvm-cov not found! Aborting...")
-endif() # NOT LCOV_PATH
+# if(NOT LLVMCOV_PATH)
+#     message(FATAL_ERROR "llvm-cov not found! Aborting...")
+# endif() # NOT LCOV_PATH
 
-if(NOT GENHTML_PATH)
-    message(FATAL_ERROR "genhtml not found! Aborting...")
-endif() # NOT GENHTML_PATH
+# if(NOT GENHTML_PATH)
+#     message(FATAL_ERROR "genhtml not found! Aborting...")
+# endif() # NOT GENHTML_PATH
 
 # no spaces allowed within tests list
 # set(ctest_tests 'eosio.token_binaryen|eosio.token_wavm')
@@ -74,16 +74,16 @@ add_custom_target(${Coverage_NAME} ALL
     # Run tests
     COMMAND ${PROJECT_BINARY_DIR}/tools/ctestwrapper.sh -R ${ctest_tests} -E ${ctest_exclude_tests}
     
-    COMMAND ${LCOV_PATH} --directory . --capture --gcov-tool ${CMAKE_SOURCE_DIR}/tools/llvm-gcov.sh --output-file ${Coverage_NAME}.info
+    # COMMAND ${LCOV_PATH} --directory . --capture --gcov-tool ${CMAKE_SOURCE_DIR}/tools/llvm-gcov.sh --output-file ${Coverage_NAME}.info
 
-    COMMAND ${LCOV_PATH} -remove ${Coverage_NAME}.info '*/boost/*' '/usr/lib/*' '/usr/include/*' '*/externals/*' '*/fc/*' '*/wasm-jit/*' --output-file ${Coverage_NAME}_filtered.info
+    # COMMAND ${LCOV_PATH} -remove ${Coverage_NAME}.info '*/boost/*' '/usr/lib/*' '/usr/include/*' '*/externals/*' '*/fc/*' '*/wasm-jit/*' --output-file ${Coverage_NAME}_filtered.info
 
-    COMMAND ${GENHTML_PATH} -o ${Coverage_NAME} ${PROJECT_BINARY_DIR}/tests/${Coverage_NAME}_filtered.info
+    # COMMAND ${GENHTML_PATH} -o ${Coverage_NAME} ${PROJECT_BINARY_DIR}/tests/${Coverage_NAME}_filtered.info
 
-    COMMAND if [ "$CI" != "true" ]\; then ${CMAKE_COMMAND} -E remove ${Coverage_NAME}.base ${Coverage_NAME}.info ${Coverage_NAME}_filtered.info ${Coverage_NAME}.total ${PROJECT_BINARY_DIR}/${Coverage_NAME}.info.cleaned ${PROJECT_BINARY_DIR}/${Coverage_NAME}_filtered.info.cleaned\; fi
+    # COMMAND if [ "$CI" != "true" ]\; then ${CMAKE_COMMAND} -E remove ${Coverage_NAME}.base ${Coverage_NAME}.info ${Coverage_NAME}_filtered.info ${Coverage_NAME}.total ${PROJECT_BINARY_DIR}/${Coverage_NAME}.info.cleaned ${PROJECT_BINARY_DIR}/${Coverage_NAME}_filtered.info.cleaned\; fi
 
-    WORKING_DIRECTORY ${PROJECT_CURRENT_BINARY_DIR}
-    COMMENT "Resetting code coverage counters to zero. Processing code coverage counters and generating report. Report published in ./${Coverage_NAME}"
+    # WORKING_DIRECTORY ${PROJECT_CURRENT_BINARY_DIR}
+    # COMMENT "Resetting code coverage counters to zero. Processing code coverage counters and generating report. Report published in ./${Coverage_NAME}"
 )
 
   # Show info where to find the report
