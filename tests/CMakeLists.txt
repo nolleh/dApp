@@ -42,7 +42,7 @@ file(GLOB UNIT_TESTS "*.cpp")
 include_directories(${CMAKE_BINARY_DIR}/contracts)
 link_libraries(${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
-add_eosio_test(eosio.token ${UNIT_TESTS})
+add_eosio_test(eosio.token2 ${UNIT_TESTS})
 
 ## tests
 set(Coverage_NAME ${PROJECT_NAME}_ut_coverage)
@@ -61,7 +61,7 @@ endif() # NOT LCOV_PATH
 
 # no spaces allowed within tests list
 # set(ctest_tests 'eosio.token_binaryen|eosio.token_wavm')
-set(ctest_tests 'eosio.token_wavm')
+set(ctest_tests 'eosio.token2_binaryen')
 set(ctest_exclude_tests '')
 
 message("target:" ${Coverage_NAME})
@@ -73,12 +73,12 @@ add_custom_target(${Coverage_NAME} ALL
 
     # Run tests
     COMMAND ${PROJECT_BINARY_DIR}/tools/ctestwrapper.sh -R ${ctest_tests} -E ${ctest_exclude_tests}
-    # COMMAND ${LCOV_PATH} --directory . --capture --gcov-tool ${CMAKE_SOURCE_DIR}/tools/llvm-gcov.sh --output-file ${Coverage_NAME}.info
-    # COMMAND ${LCOV_PATH} -remove ${Coverage_NAME}.info '*/boost/*' '/usr/lib/*' '/usr/include/*' '*/externals/*' '*/fc/*' '*/wasm-jit/*' --output-file ${Coverage_NAME}_filtered.info
-    # COMMAND ${GENHTML_PATH} -o ${Coverage_NAME} ${PROJECT_BINARY_DIR}/tests/${Coverage_NAME}_filtered.info
-    # COMMAND if [ "$CI" != "true" ]\; then ${CMAKE_COMMAND} -E remove ${Coverage_NAME}.base ${Coverage_NAME}.info ${Coverage_NAME}_filtered.info ${Coverage_NAME}.total ${PROJECT_BINARY_DIR}/${Coverage_NAME}.info.cleaned ${PROJECT_BINARY_DIR}/${Coverage_NAME}_filtered.info.cleaned\; fi
-    # WORKING_DIRECTORY ${PROJECT_CURRENT_BINARY_DIR}
-    # COMMENT "Resetting code coverage counters to zero. Processing code coverage counters and generating report. Report published in ./${Coverage_NAME}"
+    COMMAND ${LCOV_PATH} --directory . --capture --gcov-tool ${CMAKE_SOURCE_DIR}/tools/llvm-gcov.sh --output-file ${Coverage_NAME}.info
+    COMMAND ${LCOV_PATH} -remove ${Coverage_NAME}.info '*/boost/*' '/usr/lib/*' '/usr/include/*' '*/externals/*' '*/fc/*' '*/wasm-jit/*' --output-file ${Coverage_NAME}_filtered.info
+    COMMAND ${GENHTML_PATH} -o ${Coverage_NAME} ${PROJECT_BINARY_DIR}/tests/${Coverage_NAME}_filtered.info
+    COMMAND if [ "$CI" != "true" ]\; then ${CMAKE_COMMAND} -E remove ${Coverage_NAME}.base ${Coverage_NAME}.info ${Coverage_NAME}_filtered.info ${Coverage_NAME}.total ${PROJECT_BINARY_DIR}/${Coverage_NAME}.info.cleaned ${PROJECT_BINARY_DIR}/${Coverage_NAME}_filtered.info.cleaned\; fi
+    WORKING_DIRECTORY ${PROJECT_CURRENT_BINARY_DIR}
+    COMMENT "Resetting code coverage counters to zero. Processing code coverage counters and generating report. Report published in ./${Coverage_NAME}"
 )
 
   # Show info where to find the report

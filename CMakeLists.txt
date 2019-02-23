@@ -9,8 +9,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMakeModules")
 
 include(wasm)
 
-set(CONTRACTS_DIR ${CMAKE_SOURCE_DIR}/contracts)
-
 # set( CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wall -Wshadow -Werror -Wno-error=dangling-else -fexceptions")
 add_subdirectory(contracts)
 add_subdirectory(tests)

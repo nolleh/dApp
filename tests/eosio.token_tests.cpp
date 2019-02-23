@@ -36,7 +36,6 @@ public:
         std::ifstream stream("../contracts/eosio.token2/eosio.token2.wasm", std::ios::in | std::ios::binary);
         std::vector<uint8_t> wasm{std::istreambuf_iterator<char>(stream), std::istreambuf_iterator<char>()};
         
-
         BOOST_REQUIRE_EQUAL(false, wasm.empty());
         // chain.set_code(N(eosio.token), eosio_token2_wast);
         set_code(N(eosio.token), wasm);
@@ -67,7 +66,7 @@ public:
                                     uint32_t expiration = DEFAULT_EXPIRATION_DELTA,
                                     uint32_t delay_sec = 0)
     {
-        base_tester::push_action(code, acttype, actor, data, expiration, delay_sec);
+        return base_tester::push_action(code, acttype, actor, data, expiration, delay_sec);
     }
 
     fc::variant get_stats( const string& symbolname )
@@ -105,7 +104,7 @@ BOOST_FIXTURE_TEST_CASE( create_tests, eosio_token_tester ) try {
 //    auto token = create( N(alice), asset::from_string("1000.000 TKN"));
 
    push_action( N(eosio.token), N(create), N(eosio.token),
-        mvo()("issuer", "alice"), asset::from_string(("maximum_supply", "1000.000 TKN")));
+        mvo()("issuer", "alice") ("maximum_supply", asset::from_string("1000.000 TKN")));
 
    auto stats = get_stats("3,TKN");
    REQUIRE_MATCHING_OBJECT( stats, mvo()
